@@ -1,5 +1,5 @@
 import os
-import subprocess
+import win32api
 
 
 def print_all_pdfs_in_folder(folder_path):
@@ -12,7 +12,8 @@ def print_all_pdfs_in_folder(folder_path):
     for pdf_file in pdf_files:
         pdf_file_path = os.path.join(folder_path,pdf_file)
         try:
-            subprocess.run(["C:\Program Files\Adobe\Acrobat DC\Acrobat\Acrobat.exe","/p",pdf_file_path],shell=True) 
+            #subprocess.run(["C:\Program Files\Adobe\Acrobat DC\Acrobat\Acrobat.exe","/p",pdf_file_path],shell=True) 
+            win32api.ShellExecute(0,"print",pdf_file_path,None,".",0)
             print(f"已打印文件：{pdf_file}")
         except Exception as e:
             print(f"打印文件时出错：{e}")
